@@ -36,15 +36,19 @@ namespace ArchiverLogic
             }
         }
 
-        public static List<ListViewItem> LoadSelectedDirInfo(TreeNodeMouseClickEventArgs e)
+        public static List<ListViewItem> LoadSelectedDirInfo(DirectoryInfo selectedDir)
         {
             allItems.Clear();
 
-            TreeNode newSelected = e.Node;
-            DirectoryInfo nodeDirInfo = (DirectoryInfo)newSelected.Tag;
-
-            LoadDirectories(nodeDirInfo);
-            LoadFiles(nodeDirInfo);
+            try
+            {
+                LoadDirectories(selectedDir);
+                LoadFiles(selectedDir);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("You don't have permission to access this folder");
+            }
 
             return allItems;
         }

@@ -37,9 +37,9 @@
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnLastModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchBar = new System.Windows.Forms.TextBox();
             this.backBtn = new System.Windows.Forms.Button();
-            this.fwdBtn = new System.Windows.Forms.Button();
+            this.getIntoBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSplitContainer)).BeginInit();
             this.fileSplitContainer.Panel1.SuspendLayout();
             this.fileSplitContainer.Panel2.SuspendLayout();
@@ -75,11 +75,13 @@
             // filesTreeView
             // 
             this.filesTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.filesTreeView.HideSelection = false;
             this.filesTreeView.ImageIndex = 0;
             this.filesTreeView.ImageList = this.filesImageList;
             this.filesTreeView.Location = new System.Drawing.Point(0, 0);
             this.filesTreeView.Name = "filesTreeView";
             this.filesTreeView.SelectedImageIndex = 0;
+            this.filesTreeView.ShowRootLines = false;
             this.filesTreeView.Size = new System.Drawing.Size(188, 436);
             this.filesTreeView.TabIndex = 0;
             this.filesTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.filesTreeView_NodeMouseClick);
@@ -98,6 +100,7 @@
             this.filesListView.TabIndex = 0;
             this.filesListView.UseCompatibleStateImageBehavior = false;
             this.filesListView.View = System.Windows.Forms.View.Details;
+            this.filesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.filesListView_MouseDoubleClick);
             // 
             // columnName
             // 
@@ -111,12 +114,13 @@
             // 
             this.columnLastModified.Text = "Last Modified";
             // 
-            // textBox1
+            // searchBar
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(345, 20);
-            this.textBox1.TabIndex = 1;
+            this.searchBar.Location = new System.Drawing.Point(59, 14);
+            this.searchBar.Name = "searchBar";
+            this.searchBar.Size = new System.Drawing.Size(345, 20);
+            this.searchBar.TabIndex = 1;
+            this.searchBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchBar_KeyDown);
             // 
             // backBtn
             // 
@@ -126,27 +130,30 @@
             this.backBtn.Size = new System.Drawing.Size(40, 23);
             this.backBtn.TabIndex = 2;
             this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
-            // fwdBtn
+            // getIntoBtn
             // 
-            this.fwdBtn.Image = ((System.Drawing.Image)(resources.GetObject("fwdBtn.Image")));
-            this.fwdBtn.Location = new System.Drawing.Point(59, 12);
-            this.fwdBtn.Name = "fwdBtn";
-            this.fwdBtn.Size = new System.Drawing.Size(40, 23);
-            this.fwdBtn.TabIndex = 3;
-            this.fwdBtn.UseVisualStyleBackColor = true;
+            this.getIntoBtn.Location = new System.Drawing.Point(410, 11);
+            this.getIntoBtn.Name = "getIntoBtn";
+            this.getIntoBtn.Size = new System.Drawing.Size(75, 23);
+            this.getIntoBtn.TabIndex = 4;
+            this.getIntoBtn.Text = "Get into";
+            this.getIntoBtn.UseVisualStyleBackColor = true;
+            this.getIntoBtn.Click += new System.EventHandler(this.getIntoBtn_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 491);
-            this.Controls.Add(this.fwdBtn);
+            this.Controls.Add(this.getIntoBtn);
             this.Controls.Add(this.backBtn);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.searchBar);
             this.Controls.Add(this.fileSplitContainer);
             this.Name = "MainWindow";
             this.Text = "Sanity Archiver Turbo 3000";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.fileSplitContainer.Panel1.ResumeLayout(false);
             this.fileSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSplitContainer)).EndInit();
@@ -165,9 +172,9 @@
         private System.Windows.Forms.ColumnHeader columnName;
         private System.Windows.Forms.ColumnHeader columnType;
         private System.Windows.Forms.ColumnHeader columnLastModified;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.Button backBtn;
-        private System.Windows.Forms.Button fwdBtn;
+        private System.Windows.Forms.Button getIntoBtn;
     }
 }
 
