@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DirectoryLoader.cs" />
+    <Compile Include="PathModifier.cs" />
     <Compile Include="TreeNodeLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -52,6 +52,9 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SanityArchiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainWindow.resx">
@@ -80,9 +83,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ArchiverLogic\ArchiverLogic.csproj">
+    <ProjectReference Include="..\ArchiverLogic\SanityArchiverLogic.csproj">
       <Project>{90aed291-586d-46db-b6d9-dff6a139ab0c}</Project>
-      <Name>ArchiverLogic</Name>
+      <Name>SanityArchiverLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanityArchiver", "SanityArchiver\SanityArchiver.csproj", "{CF815831-BCB1-455B-97D1-33386737CD72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiverLogic", "ArchiverLogic\ArchiverLogic.csproj", "{90AED291-586D-46DB-B6D9-DFF6A139AB0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanityArchiverLogic", "ArchiverLogic\SanityArchiverLogic.csproj", "{90AED291-586D-46DB-B6D9-DFF6A139AB0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

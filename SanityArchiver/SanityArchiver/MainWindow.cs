@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArchiverLogic;
+using SanityArchiverLogic;
 
 namespace SanityArchiver
 {
@@ -23,14 +23,8 @@ namespace SanityArchiver
 
         void filesTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            filesListView.Items.Clear();
-            DirectoryInfo currentDirInfo = (DirectoryInfo) e.Node.Tag;
-            foreach (ListViewItem listViewItem in DirectoryLoader.LoadSelectedDirInfo(currentDirInfo))
-            {
-                filesListView.Items.Add(listViewItem);
-            }
-            filesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
+            DirectoryInfo currentDirInfo = (DirectoryInfo)e.Node.Tag;
+            FillFileListView(currentDirInfo);
             try
             {
                 TreeNodeLoader.GetCurrentDirectories(currentDirInfo.GetDirectories(), e.Node);
@@ -45,62 +39,22 @@ namespace SanityArchiver
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            // Populate left side of the window with the tree-view of folders
             searchBar.Text = defaultHomeFolder;
             filesTreeView.Nodes.Add(TreeNodeLoader.PopulateTreeView(defaultHomeFolder));
-
         }
 
         private void getIntoBtn_Click(object sender, EventArgs e)
         {
             string pathToGo = String.Format(@"{0}\", searchBar.Text);
-            
-            filesTreeView.Nodes.Clear();
-            filesTreeView.Nodes.Add(TreeNodeLoader.PopulateTreeView(pathToGo));
-
-            filesListView.Items.Clear();
-            foreach (ListViewItem listViewItem in DirectoryLoader.LoadSelectedDirInfo(new DirectoryInfo(pathToGo)))
-            {
-                filesListView.Items.Add(listViewItem);
-            }
-            filesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            FillNodes(pathToGo);
+            FillFileListView(new DirectoryInfo(pathToGo));
         }
-
+        
         private void backBtn_Click(object sender, EventArgs e)
         {
-            string currentAddress = searchBar.Text;
-            try
-            {
-                int index = currentAddress.Substring(0, currentAddress.Length - 1).LastIndexOf(@"\");
-                if (index >= 0)
-                {
-                    searchBar.Text = currentAddress.Substring(0, index + 1);
-                }
-                
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                MessageBox.Show("Nowhere to go back.");
-            }
-
-
-            try
-            {
-                filesTreeView.SelectedNode = filesTreeView.SelectedNode.Parent;
-            }
-            catch (NullReferenceException)
-            {
-                filesTreeView.Nodes.Clear();
-                filesTreeView.Nodes.Add(TreeNodeLoader.PopulateTreeView(searchBar.Text));
-            }
-            
-
-            filesListView.Items.Clear();
-            foreach (ListViewItem listViewItem in DirectoryLoader.LoadSelectedDirInfo(new DirectoryInfo(searchBar.Text)))
-            {
-                filesListView.Items.Add(listViewItem);
-            }
-            filesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            UpdateSearchBarTextWhenGoBack();
+            LookForParentNodeToSelect();
+            FillFileListView(new DirectoryInfo(searchBar.Text));
         }
 
         private void searchBar_KeyDown(object sender, KeyEventArgs e)
@@ -108,42 +62,17 @@ namespace SanityArchiver
             if (e.KeyCode == Keys.Enter)
             {
                 string pathToGo = String.Format(@"{0}\", searchBar.Text);
-
-                filesTreeView.Nodes.Clear();
-                filesTreeView.Nodes.Add(TreeNodeLoader.PopulateTreeView(pathToGo));
-
-                filesListView.Items.Clear();
-                foreach (ListViewItem listViewItem in DirectoryLoader.LoadSelectedDirInfo(new DirectoryInfo(pathToGo)))
-                {
-                    filesListView.Items.Add(listViewItem);
-                }
-                filesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                FillNodes(pathToGo);
+                FillFileListView(new DirectoryInfo(pathToGo));
             }
         }
 
         private void filesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string actualPath;
-            if (searchBar.Text.LastIndexOf(@"\") == searchBar.Text.Length - 1)
-            {
-                actualPath = searchBar.Text.Substring(0, searchBar.Text.Length - 1);
-            }
-            else
-            {
-                actualPath = searchBar.Text;
-            }
-
-            string pathToShow = String.Format(@"{0}\{1}", actualPath, filesListView.SelectedItems[0].Text);
+            string pathToShow = String.Format(@"{0}\{1}", PathModifier.RemoveLastBackSlash(searchBar.Text), filesListView.SelectedItems[0].Text);
             searchBar.Text = pathToShow;
-            filesListView.Items.Clear();
-            foreach (ListViewItem listViewItem in DirectoryLoader.LoadSelectedDirInfo(new DirectoryInfo(pathToShow)))
-            {
-                filesListView.Items.Add(listViewItem);
-            }
-            filesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-            filesTreeView.Nodes.Clear();
-            filesTreeView.Nodes.Add(TreeNodeLoader.PopulateTreeView(pathToShow));
+            FillFileListView(new DirectoryInfo(pathToShow));
+            FillNodes(pathToShow);
         }
     }
 }
