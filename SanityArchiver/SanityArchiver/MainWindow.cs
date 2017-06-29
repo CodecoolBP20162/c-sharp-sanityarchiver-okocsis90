@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,11 +46,9 @@ namespace SanityArchiver
 
         private void getIntoBtn_Click(object sender, EventArgs e)
         {
-            string pathToGo = String.Format(@"{0}\", searchBar.Text);
-            FillNodes(pathToGo);
-            FillFileListView(new DirectoryInfo(pathToGo));
+            NavigateToDirIfExists();
         }
-        
+
         private void backBtn_Click(object sender, EventArgs e)
         {
             UpdateSearchBarTextWhenGoBack();
@@ -61,18 +60,59 @@ namespace SanityArchiver
         {
             if (e.KeyCode == Keys.Enter)
             {
-                string pathToGo = String.Format(@"{0}\", searchBar.Text);
-                FillNodes(pathToGo);
-                FillFileListView(new DirectoryInfo(pathToGo));
+                NavigateToDirIfExists();
             }
         }
 
         private void filesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             string pathToShow = String.Format(@"{0}\{1}", PathModifier.RemoveLastBackSlash(searchBar.Text), filesListView.SelectedItems[0].Text);
-            searchBar.Text = pathToShow;
-            FillFileListView(new DirectoryInfo(pathToShow));
-            FillNodes(pathToShow);
+            if (Directory.Exists(pathToShow))
+            {
+                searchBar.Text = pathToShow;
+                FillFileListView(new DirectoryInfo(pathToShow));
+                FillNodes(pathToShow);
+            }
+
+        }
+
+        private void filesListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (filesListView.FocusedItem.Bounds.Contains(e.Location) && filesListView.FocusedItem.SubItems[1].Text == "File")
+                {
+                    fileMenu.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void compressFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fullName = PathModifier.RemoveLastBackSlash(searchBar.Text) + @"\" + filesListView.FocusedItem.Text;
+            Compresser.ArchiveFile(new DirectoryInfo(searchBar.Text), new FileInfo(fullName));
+        }
+
+        private void encryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string sourceName = PathModifier.RemoveLastBackSlash(searchBar.Text) + @"\" + filesListView.FocusedItem.Text;
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                CryptoLogic.EncryptFile(sourceName, saveFile.FileName);
+                MessageBox.Show("Succesfully Encrypted!");
+            }
+        }
+
+        private void decryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string sourceName = PathModifier.RemoveLastBackSlash(searchBar.Text) + @"\" + filesListView.FocusedItem.Text;
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                CryptoLogic.DecryptFile(sourceName, saveFile.FileName);
+                MessageBox.Show("Succesfully Dencrypted!");
+            }
         }
     }
 }

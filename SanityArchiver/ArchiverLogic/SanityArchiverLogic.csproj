@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptoLogic.cs" />
+    <Compile Include="Compresser.cs" />
     <Compile Include="DirectoryLoader.cs" />
     <Compile Include="PathModifier.cs" />
     <Compile Include="TreeNodeLoader.cs" />

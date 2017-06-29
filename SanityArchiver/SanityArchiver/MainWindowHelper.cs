@@ -63,5 +63,19 @@ namespace SanityArchiver
                 FillNodes(searchBar.Text);
             }
         }
+
+        private void NavigateToDirIfExists()
+        {
+            string pathToGo = String.Format(@"{0}\", searchBar.Text);
+            if (Directory.Exists(pathToGo))
+            {
+                FillFileListView(new DirectoryInfo(pathToGo));
+                FillNodes(pathToGo);
+            }
+            else
+            {
+                MessageBox.Show("No such Folder. Go home, U R drunk!");
+            }
+        }
     }
 }

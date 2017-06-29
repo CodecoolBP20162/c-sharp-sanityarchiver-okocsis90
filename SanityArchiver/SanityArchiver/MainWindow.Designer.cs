@@ -40,10 +40,16 @@
             this.searchBar = new System.Windows.Forms.TextBox();
             this.backBtn = new System.Windows.Forms.Button();
             this.getIntoBtn = new System.Windows.Forms.Button();
+            this.fileMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.compressFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFile = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.fileSplitContainer)).BeginInit();
             this.fileSplitContainer.Panel1.SuspendLayout();
             this.fileSplitContainer.Panel2.SuspendLayout();
             this.fileSplitContainer.SuspendLayout();
+            this.fileMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // filesImageList
@@ -100,6 +106,7 @@
             this.filesListView.TabIndex = 0;
             this.filesListView.UseCompatibleStateImageBehavior = false;
             this.filesListView.View = System.Windows.Forms.View.Details;
+            this.filesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.filesListView_MouseClick);
             this.filesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.filesListView_MouseDoubleClick);
             // 
             // columnName
@@ -142,6 +149,36 @@
             this.getIntoBtn.UseVisualStyleBackColor = true;
             this.getIntoBtn.Click += new System.EventHandler(this.getIntoBtn_Click);
             // 
+            // fileMenu
+            // 
+            this.fileMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compressFileToolStripMenuItem,
+            this.encryptToolStripMenuItem,
+            this.decryptToolStripMenuItem});
+            this.fileMenu.Name = "fileMenu";
+            this.fileMenu.Size = new System.Drawing.Size(149, 70);
+            // 
+            // compressFileToolStripMenuItem
+            // 
+            this.compressFileToolStripMenuItem.Name = "compressFileToolStripMenuItem";
+            this.compressFileToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.compressFileToolStripMenuItem.Text = "Compress File";
+            this.compressFileToolStripMenuItem.Click += new System.EventHandler(this.compressFileToolStripMenuItem_Click);
+            // 
+            // encryptToolStripMenuItem
+            // 
+            this.encryptToolStripMenuItem.Name = "encryptToolStripMenuItem";
+            this.encryptToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.encryptToolStripMenuItem.Text = "Encrypt";
+            this.encryptToolStripMenuItem.Click += new System.EventHandler(this.encryptToolStripMenuItem_Click);
+            // 
+            // decryptToolStripMenuItem
+            // 
+            this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
+            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.decryptToolStripMenuItem.Text = "Decrypt";
+            this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,6 +195,7 @@
             this.fileSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSplitContainer)).EndInit();
             this.fileSplitContainer.ResumeLayout(false);
+            this.fileMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,6 +213,11 @@
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button getIntoBtn;
+        private System.Windows.Forms.ContextMenuStrip fileMenu;
+        private System.Windows.Forms.ToolStripMenuItem compressFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem encryptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFile;
     }
 }
 

@@ -29,7 +29,7 @@ namespace SanityArchiverLogic
             foreach (FileInfo file in nodeDirInfo.GetFiles())
             {
                 ListViewItem item = new ListViewItem(file.Name, 1);
-                ListViewItem.ListViewSubItem[] subItems = {new ListViewItem.ListViewSubItem(item, "Directory"),
+                ListViewItem.ListViewSubItem[] subItems = {new ListViewItem.ListViewSubItem(item, "File"),
                                                            new ListViewItem.ListViewSubItem(item, file.LastAccessTime.ToShortDateString())};
                 item.SubItems.AddRange(subItems);
                 allItems.Add(item);
