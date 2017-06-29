@@ -45,6 +45,7 @@
             this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
+            this.columnSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.fileSplitContainer)).BeginInit();
             this.fileSplitContainer.Panel1.SuspendLayout();
             this.fileSplitContainer.Panel2.SuspendLayout();
@@ -74,8 +75,8 @@
             // fileSplitContainer.Panel2
             // 
             this.fileSplitContainer.Panel2.Controls.Add(this.filesListView);
-            this.fileSplitContainer.Size = new System.Drawing.Size(720, 436);
-            this.fileSplitContainer.SplitterDistance = 188;
+            this.fileSplitContainer.Size = new System.Drawing.Size(785, 484);
+            this.fileSplitContainer.SplitterDistance = 204;
             this.fileSplitContainer.TabIndex = 0;
             // 
             // filesTreeView
@@ -88,7 +89,7 @@
             this.filesTreeView.Name = "filesTreeView";
             this.filesTreeView.SelectedImageIndex = 0;
             this.filesTreeView.ShowRootLines = false;
-            this.filesTreeView.Size = new System.Drawing.Size(188, 436);
+            this.filesTreeView.Size = new System.Drawing.Size(204, 484);
             this.filesTreeView.TabIndex = 0;
             this.filesTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.filesTreeView_NodeMouseClick);
             // 
@@ -97,11 +98,12 @@
             this.filesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
             this.columnType,
-            this.columnLastModified});
+            this.columnLastModified,
+            this.columnSize});
             this.filesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.filesListView.Location = new System.Drawing.Point(0, 0);
             this.filesListView.Name = "filesListView";
-            this.filesListView.Size = new System.Drawing.Size(528, 436);
+            this.filesListView.Size = new System.Drawing.Size(577, 484);
             this.filesListView.SmallImageList = this.filesImageList;
             this.filesListView.TabIndex = 0;
             this.filesListView.UseCompatibleStateImageBehavior = false;
@@ -179,11 +181,15 @@
             this.decryptToolStripMenuItem.Text = "Decrypt";
             this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
+            // columnSize
+            // 
+            this.columnSize.Text = "Size";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 491);
+            this.ClientSize = new System.Drawing.Size(809, 539);
             this.Controls.Add(this.getIntoBtn);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.searchBar);
@@ -218,6 +224,7 @@
         private System.Windows.Forms.ToolStripMenuItem encryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFile;
+        private System.Windows.Forms.ColumnHeader columnSize;
     }
 }
 
