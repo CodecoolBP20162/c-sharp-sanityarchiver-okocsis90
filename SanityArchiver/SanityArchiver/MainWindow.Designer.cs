@@ -37,6 +37,7 @@
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnLastModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.searchBar = new System.Windows.Forms.TextBox();
             this.backBtn = new System.Windows.Forms.Button();
             this.getIntoBtn = new System.Windows.Forms.Button();
@@ -45,7 +46,8 @@
             this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
-            this.columnSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.searchText = new System.Windows.Forms.TextBox();
+            this.searchLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fileSplitContainer)).BeginInit();
             this.fileSplitContainer.Panel1.SuspendLayout();
             this.fileSplitContainer.Panel2.SuspendLayout();
@@ -123,6 +125,10 @@
             // 
             this.columnLastModified.Text = "Last Modified";
             // 
+            // columnSize
+            // 
+            this.columnSize.Text = "Size";
+            // 
             // searchBar
             // 
             this.searchBar.Location = new System.Drawing.Point(59, 14);
@@ -181,15 +187,29 @@
             this.decryptToolStripMenuItem.Text = "Decrypt";
             this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
-            // columnSize
+            // searchText
             // 
-            this.columnSize.Text = "Size";
+            this.searchText.Location = new System.Drawing.Point(663, 13);
+            this.searchText.Name = "searchText";
+            this.searchText.Size = new System.Drawing.Size(134, 20);
+            this.searchText.TabIndex = 5;
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Location = new System.Drawing.Point(594, 17);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(63, 13);
+            this.searchLabel.TabIndex = 6;
+            this.searchLabel.Text = "Search File:";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 539);
+            this.Controls.Add(this.searchLabel);
+            this.Controls.Add(this.searchText);
             this.Controls.Add(this.getIntoBtn);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.searchBar);
@@ -225,6 +245,8 @@
         private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFile;
         private System.Windows.Forms.ColumnHeader columnSize;
+        private System.Windows.Forms.TextBox searchText;
+        private System.Windows.Forms.Label searchLabel;
     }
 }
 

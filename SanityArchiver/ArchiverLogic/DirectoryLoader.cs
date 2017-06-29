@@ -35,7 +35,7 @@ namespace SanityArchiverLogic
             return sizeOfCurrentDir;
         }
 
-        static void LoadDirectories(DirectoryInfo nodeDirInfo)
+        public static void LoadDirectories(DirectoryInfo nodeDirInfo)
         {
             foreach (DirectoryInfo dir in nodeDirInfo.GetDirectories())
             {
@@ -50,7 +50,7 @@ namespace SanityArchiverLogic
             }
         }
 
-        static void LoadFiles(DirectoryInfo nodeDirInfo)
+        public static void LoadFiles(DirectoryInfo nodeDirInfo)
         {
             foreach (FileInfo file in nodeDirInfo.GetFiles())
             {
